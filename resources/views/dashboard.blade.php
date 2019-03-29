@@ -111,16 +111,16 @@
             <!-- Section: user info -->
         </div>
         <div class="col-lg-7 col-md-12 mt-3">
-            <!--Section: Recent transactions-->
+            <!--Section: Rental history-->
             <section class="card mb-4">
                 <div class="card-body text-center">
                     <h5>
-                        <strong>Recent transactions</strong>
+                        <strong>Rental history</strong>
                     </h5>
                     <hr class="my-3">
                 </div>
             </section>
-            <!--Section: Recent transactions-->
+            <!--Section: Rental history ends-->
         </div>
     </div>
     <!-- row ends -->
