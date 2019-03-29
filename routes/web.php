@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', 'HmController@index')->name('home.index');
-Route::get('/about', 'HmController@about')->name('home.about');
+Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/about', 'HomeController@about')->name('home.about');
 Route::resource('blog', 'BlogsController');
 
 Auth::routes();
