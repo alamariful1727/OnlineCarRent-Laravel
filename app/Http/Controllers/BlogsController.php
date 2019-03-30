@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Session;
 class BlogsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,6 +59,7 @@ class BlogsController extends Controller
 
         // create Blog
         $blog = new Blog;
+        $blog->user_id = auth()->user()->id;
         $blog->body = $request->input('body');
         $blog->save();
 

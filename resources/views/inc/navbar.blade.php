@@ -41,7 +41,7 @@
                 </a>
               <div class="dropdown-menu  custom-dropdown" aria-labelledby="blogmenu">
                 <a class="dropdown-item" href="{{route('blog.create')}}">Add new blog!!</a>
-                <a class="dropdown-item" href="/blogs/myblogs">My blogs</a>
+                <a class="dropdown-item" href="{{route('dashboard.myblogs')}}">My blogs</a>
               </div>
               @endif
             </div>

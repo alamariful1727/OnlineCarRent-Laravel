@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/', 'HmController@index')->name('home.index');
-Route::get('/about', 'HmController@about')->name('home.about');
+Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/about', 'HomeController@about')->name('home.about');
 Route::resource('blog', 'BlogsController');
 
 Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/myblogs', 'DashboardController@myblogs')->name('dashboard.myblogs');

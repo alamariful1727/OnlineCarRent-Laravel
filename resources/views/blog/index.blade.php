@@ -9,6 +9,7 @@
     <div class="card-columns">
       @foreach ($blogs as $blog)
       <div class="card p-3">
+        @if (Auth::check()) @if (Auth::user()->id == $blog->user->id)
         <div class="text-right">
           <button type="button" data-bid="{{$blog->id}}" onclick="getBid(this);" id="btnEdit" class="btn btn-info" data-toggle="modal"
             data-target="#editModal">
@@ -19,10 +20,11 @@
                 <span><i class="fas fa-trash-alt text-light"></i></span>
               </button>
         </div>
+        @endif @endif
         <blockquote class="blockquote mb-0 card-body">
           <p>{{$blog->body}}</p>
           <footer class="blockquote-footer">
-            <small class="text-muted"><cite title="user type">user email</cite>
+            <small class="text-muted"><cite title="{{$blog->id}}">{{$blog->user->email}}</cite>
               </small>
             <p class="card-text"><small class="text-muted">Written on {{$blog->created_at}}</small></p>
           </footer>
@@ -83,7 +85,7 @@
     <!-- Delete Modal ends -->
 
   </div>
-  {{$blogs->links()}}
+  {{-- pagination --}} @if(Request::url() === 'http://onlinecarrent.com/blog') {{$blogs->links()}} @endif
   <!-- row ends -->
 </div>
 <script>
