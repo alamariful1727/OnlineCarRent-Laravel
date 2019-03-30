@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Blog;
 use DB;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class BlogsController extends Controller
 {
@@ -54,12 +55,30 @@ class BlogsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'body' => 'required'
+            'body' => ['required', 'max:191'],
+            'cover_image' => 'image|nullable|max:1999'
         ]);
+
+        // Handle File Upload
+        if ($request->hasFile('cover_image')) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            $path = $request->file('cover_image')->storeAs('public/blog_images', $fileNameToStore);
+        } else {
+            $fileNameToStore = '';
+        }
 
         // create Blog
         $blog = new Blog;
         $blog->user_id = auth()->user()->id;
+        $blog->cover_image = $fileNameToStore;
         $blog->body = $request->input('body');
         $blog->save();
 
@@ -101,9 +120,26 @@ class BlogsController extends Controller
             'body' => 'required'
         ]);
 
+        // Handle File Upload
+        if ($request->hasFile('cover_image')) {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('cover_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // Upload Image
+            $path = $request->file('cover_image')->storeAs('public/blog_images', $fileNameToStore);
+        }
+
         // update Blog
         $blog = Blog::find($id);
         $blog->body = $request->input('body');
+        if ($request->hasFile('cover_image')) {
+            $blog->cover_image = $fileNameToStore;
+        }
         $blog->save();
         Session::flash('success', 'Blog Updated!!'); //one time
         return 'success';
@@ -119,6 +155,10 @@ class BlogsController extends Controller
     {
         // update Blog
         $blog = Blog::find($id);
+        if ($blog->cover_image != '') {
+            // Delete Image
+            Storage::delete('public/blog_images/' . $blog->cover_image);
+        }
         $blog->delete();
         Session::flash('success', 'Blog Deleted!!'); //one time
         return 'success';

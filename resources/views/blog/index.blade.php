@@ -8,9 +8,9 @@
     @if (count($blogs)>0)
     <div class="card-columns">
       @foreach ($blogs as $blog)
-      <div class="card p-3">
+      <div class="card">
         @if (Auth::check()) @if (Auth::user()->id == $blog->user->id)
-        <div class="text-right">
+        <div class="text-right abs-opt">
           <button type="button" data-bid="{{$blog->id}}" onclick="getBid(this);" id="btnEdit" class="btn btn-info" data-toggle="modal"
             data-target="#editModal">
                 <span><i class="fas fa-edit text-light"></i></span>
@@ -20,7 +20,9 @@
                 <span><i class="fas fa-trash-alt text-light"></i></span>
               </button>
         </div>
-        @endif @endif
+        @endif @endif @if ($blog->cover_image != '')
+        <img class="card-img-top" src="/storage/blog_images/{{$blog->cover_image}}" alt="Sorry: Admin will Add a image later..">        @endif
+
         <blockquote class="blockquote mb-0 card-body">
           <p>{{$blog->body}}</p>
           <footer class="blockquote-footer">
@@ -89,8 +91,6 @@
   <!-- row ends -->
 </div>
 <script>
-  // ckeditor
-
   // edit & delete blog [Ajax using axios]
     var blogID = null, body = null, id = null;
     function getBid(btn) {
@@ -105,16 +105,19 @@
         // $('#bbody').ckeditor();
       }
       request();
-    }
-
-    document.getElementById('editBlog').addEventListener("click", function () {
-      // $('#bbody').ckeditor();
-      var blogInfo = { bid: blogID, body: document.getElementById('bbody').value };
       
-      console.log(blogID);
+    }
+// editBlog
+    document.getElementById('editBlog').addEventListener("click", function () {
+
+      var blogInfo = { bid: blogID, body: document.getElementById('bbody').value };
+
       if (blogInfo.body.length == 0) {
         document.getElementById('bodyError').innerHTML = "Can't be empty!!";
+      } else if (blogInfo.body.length > 191 ) {
+        document.getElementById('bodyError').innerHTML = "Length should be between 1-191!!";
       } else {
+
         axios.put('http://onlinecarrent.com/blog/' + blogID, {
           body: document.getElementById('bbody').value
         })
@@ -125,18 +128,11 @@
         .catch(error => {
           console.log(error.response);
         });
+
       }
     });
-
+// delete blog
     document.getElementById('deleteBlog').addEventListener("click", function () {
-      // axios.post('http://onlinecarrent.com/blog/delete', { bid: blogID })
-      //   .then(response => {
-      //     window.location.href = "http://onlinecarrent.com/blog";
-      //   })
-      //   .catch(error => {
-      //     console.log(error);
-      //   });
-
         axios.delete('http://onlinecarrent.com/blog/' + blogID, { data: null })
         .then(response => {
           window.location.href = "http://onlinecarrent.com/blog";

@@ -345,3 +345,8 @@ textarea {
 .blockquote-footer {
     text-align: -webkit-right;
 }
+.abs-opt {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
