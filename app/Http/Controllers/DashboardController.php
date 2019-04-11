@@ -26,11 +26,11 @@ class DashboardController extends Controller
     {
         return view('dashboard.index');
     }
-    public function myblogs()
+
+    public function all()
     {
-        $user_id = auth()->user()->id;
-        $user = User::find($user_id);
-        return view('blog.index')->with('blogs', $user->blogs);
+        $users = User::all();
+        return view('all')->with('users', $users);
         // return $user->blogs;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Blog;
+use App\User;
 use DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -31,9 +32,21 @@ class BlogsController extends Controller
         // $blogs = Blog::orderBy('id', 'desc')->get();
         $blogs = Blog::orderBy('updated_at', 'desc')->paginate(5);
         // $blogs = Blog::orderBy('id', 'desc')->take(2)->get();
+        // $blogs = Blog::find(1);
+        // $blogs = Blog::find([]);
         // $blogs = Blog::where('id', '3')->get();
+        // $blogs = Blog::where('id', '3')->get()->where('password',3);
+        // $blogs = Blog::where('id', '3')->get()->where('password',3)->first();
         // $blogs = DB::select('select * from blogs where id = ?', [3]);
         return view('blog.index')->with('blogs', $blogs);
+    }
+
+    public function userBlogs()
+    {
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        return view('blog.index')->with('blogs', $user->blogs);
+        // return $user->blogs;
     }
 
     /**

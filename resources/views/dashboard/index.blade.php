@@ -24,7 +24,7 @@
 
                                     {{-- <img class="img-fluid" src="/uploads/<%= user.photo %>"> --}}
 
-                                    <img class="img-fluid" src="{{ asset('uploads/new.jpg') }}">
+                                    <img class="img-fluid" src="{{ asset('storage/uploads/new.jpg') }}">
 
                                 </div>
                             </div>

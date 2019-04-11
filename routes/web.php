@@ -14,8 +14,10 @@
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/about', 'HomeController@about')->name('home.about');
 Route::resource('blog', 'BlogsController');
+Route::get('/myblogs', 'BlogsController@userBlogs')->name('blogs.userBlogs');
 
 Auth::routes();
 
+Route::get('/all', 'DashboardController@all')->name('dashboard.all');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-Route::get('/myblogs', 'DashboardController@myblogs')->name('dashboard.myblogs');
+// Route::get('/myblogs', 'DashboardController@myblogs')->name('dashboard.myblogs');
