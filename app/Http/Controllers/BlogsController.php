@@ -8,6 +8,7 @@ use App\User;
 use DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\BlogFormRequest;
 
 class BlogsController extends Controller
 {
@@ -65,13 +66,8 @@ class BlogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogFormRequest $request)
     {
-        $this->validate($request, [
-            'body' => ['required', 'max:191'],
-            'cover_image' => 'image|nullable|max:1999'
-        ]);
-
         // Handle File Upload
         if ($request->hasFile('cover_image')) {
             // Get filename with the extension
@@ -127,12 +123,8 @@ class BlogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(BlogFormRequest $request, $id)
     {
-        $this->validate($request, [
-            'body' => 'required'
-        ]);
-
         // Handle File Upload
         if ($request->hasFile('cover_image')) {
             // Get filename with the extension
