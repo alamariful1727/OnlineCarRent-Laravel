@@ -37,6 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function is_admin()
+    {
+        return ($this->type == 'admin') ? true : false;
+    }
+
     public function blogs()
     {
         return $this->hasMany('App\Blog');

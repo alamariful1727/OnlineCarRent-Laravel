@@ -21,11 +21,7 @@
                             <div class="image_outer_container">
                                 <div class="green_icon"></div>
                                 <div class="image_inner_container">
-
-                                    {{-- <img class="img-fluid" src="/uploads/<%= user.photo %>"> --}}
-
                                     <img class="img-fluid" src="{{ asset('storage/uploads/new.jpg') }}">
-
                                 </div>
                             </div>
                         </a>

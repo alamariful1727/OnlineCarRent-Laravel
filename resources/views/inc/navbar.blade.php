@@ -10,7 +10,13 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         {{-- left navbar menu --}}
-        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav mr-auto">
+          @if (Auth::check() && Auth::user()->type == 'admin')
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.index')}}">admin</a>
+          </li>
+          @endif
+        </ul>
         {{-- rigth navbar menu --}}
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">

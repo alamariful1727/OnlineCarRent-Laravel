@@ -11,13 +11,23 @@
 |
 */
 
+// user auth
+Auth::routes();
+//check user/admin
+Route::post('/login-validate', 'LoginController@check')->name('login.validate');
+// home
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/about', 'HomeController@about')->name('home.about');
+
+// admin dashboard
+Route::get('/admin', 'AdminController@index')->name('admin.index');
+
+
+// blogs
 Route::resource('blog', 'BlogsController');
 Route::get('/myblogs', 'BlogsController@userBlogs')->name('blogs.userBlogs');
 
-Auth::routes();
-
+// user dashboard
 Route::get('/all', 'DashboardController@all')->name('dashboard.all');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 // Route::get('/myblogs', 'DashboardController@myblogs')->name('dashboard.myblogs');
