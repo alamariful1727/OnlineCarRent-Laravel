@@ -20,8 +20,9 @@ Route::get('/', 'HomeController@index')->name('home.index');
 Route::get('/about', 'HomeController@about')->name('home.about');
 
 // admin dashboard
-Route::get('/admin', 'AdminController@index')->name('admin.index');
-
+Route::group(['middleware' => ['auth', 'admin']], function () {
+  Route::get('/admin', 'AdminController@index')->name('admin.index');
+});
 
 // blogs
 Route::resource('blog', 'BlogsController');

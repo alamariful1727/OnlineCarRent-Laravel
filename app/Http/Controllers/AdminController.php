@@ -15,14 +15,12 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
-            $this->user = Auth::user();
-            // dd(auth()->user()->type);
-            if (auth()->user()->type != 'admin') {
-                return redirect('/')->with('error', 'Restricted page for user!!');
-            }
-            return $next($request);
-        });
+        // $this->middleware(function ($request, $next) {
+        //     if (auth()->user()->type != 'admin') {
+        //         return redirect('/')->with('error', 'Restricted page for user!!');
+        //     }
+        //     return $next($request);
+        // });
     }
     public function index()
     {
