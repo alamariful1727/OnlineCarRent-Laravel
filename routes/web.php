@@ -21,7 +21,7 @@ Route::get('/about', 'HomeController@about')->name('home.about');
 
 // admin dashboard
 Route::group(['middleware' => ['auth', 'admin']], function () {
-  Route::get('/admin', 'AdminController@index')->name('admin.index');
+  Route::get('/admin-dashboard', 'AdminController@index')->name('admin.index');
 });
 
 // blogs
@@ -29,6 +29,5 @@ Route::resource('blog', 'BlogsController');
 Route::get('/myblogs', 'BlogsController@userBlogs')->name('blogs.userBlogs');
 
 // user dashboard
-Route::get('/all', 'DashboardController@all')->name('dashboard.all');
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-// Route::get('/myblogs', 'DashboardController@myblogs')->name('dashboard.myblogs');
+Route::get('/{url}', 'DashboardController@index')->name('dashboard');
+// Route::get('/blog/{blog}/edit', 'DashboardController@index')->name('dashboard');

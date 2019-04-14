@@ -66,7 +66,7 @@
           <!-- my account -->
           <li class="nav-item dropdown">
             <div class="btn-group">
-              <a href="{{route('dashboard')}}" class="nav-link">{{ Auth::user()->name }}</a>
+              <a href="{{Auth::user()->url}}" class="nav-link">{{ Auth::user()->name }}</a>
               <a href="#" class="nav-link dropdown-toggle dropdown-toggle-split" id="usermenu" data-toggle="dropdown" aria-haspopup="true"
                 aria-expanded="false" data-reference="parent">
                         <span class="sr-only">Toggle Dropdown</span>

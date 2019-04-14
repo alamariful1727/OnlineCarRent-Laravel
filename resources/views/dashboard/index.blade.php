@@ -30,15 +30,15 @@
                 <!--Card content-->
                 <div class="card-body">
                     <!--Title-->
-                    <h4 class="card-title">Hi, I'm <strong style="text-transform: capitalize;">Name</strong></h4>
+                    <h4 class="card-title">Hi, I'm <strong style="text-transform: capitalize;">{{$user->name}}</strong></h4>
                     <hr class="my-3">
                     <div class="row">
                         <div class="col-8">
-                            <h6><i class="fas fa-map-marker-alt mr-2"></i>From</h6>
+                            <h6><i class="fas fa-envelope mr-2"></i>Email</h6>
                         </div>
                         <div class="col-4">
                             <h6>
-                                city, country
+                                asd@asd.com
                             </h6>
                         </div>
                     </div>
@@ -55,11 +55,11 @@
                     <hr class="my-3">
 
                     <!-- description -->
-                    <h6>Description</h6>
+                    <h6><i class="fas fa-address-card mr-2"></i>Description</h6>
                     <p class="text-muted">
                         desc
                     </p>
-
+                    <a class="btn btn-info btn-md" href="/user/settings" role="button" data-toggle="">Edit profile<i class="fas fa-pencil-alt ml-2"></i></a>
                 </div>
 
             </section>

@@ -22,15 +22,12 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index($url)
     {
-        return view('dashboard.index');
-    }
-
-    public function all()
-    {
-        $users = User::all();
-        return view('all')->with('users', $users);
-        // return $user->blogs;
+        $user = User::where('url', $url)->first();
+        if ($user != null) {
+            return view('dashboard.index')->with('user', $user);
+        }
+        return redirect('/')->with('error', 'Sorry, no user found in <strong>/$url</strong>');
     }
 }
