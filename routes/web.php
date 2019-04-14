@@ -30,4 +30,5 @@ Route::get('/myblogs', 'BlogsController@userBlogs')->name('blogs.userBlogs');
 
 // user dashboard
 Route::get('/{url}', 'DashboardController@index')->name('dashboard');
-// Route::get('/blog/{blog}/edit', 'DashboardController@index')->name('dashboard');
+Route::get('/user/{id}/edit', 'DashboardController@edit')->name('dashboard.edit');
+Route::post('/user/{id}', 'DashboardController@update')->name('dashboard.update');

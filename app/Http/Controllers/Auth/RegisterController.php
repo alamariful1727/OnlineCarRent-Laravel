@@ -65,6 +65,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $url = Str::limit(Hash::make($data['password']), 20);
+        $url = join("", explode("/", $url));
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

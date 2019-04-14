@@ -17,14 +17,14 @@
             <section class="card card-cascade card-avatar mb-4">
                 <div class="mt-2">
                     <div class="d-flex justify-content-center h-100">
-                        <a href="/user/upload" class="go_upload">
-                            <div class="image_outer_container">
-                                <div class="green_icon"></div>
-                                <div class="image_inner_container">
-                                    <img class="img-fluid" src="{{ asset('storage/uploads/new.jpg') }}">
-                                </div>
+                        <div class="image_outer_container">
+                            @if (Auth::check() && Auth::user()->id == $user->id)
+                            <div class="green_icon"></div>
+                            @endif
+                            <div class="image_inner_container">
+                                <img class="img-fluid" src="/storage/user_images/{{$user->image}}">
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
                 <!--Card content-->
@@ -32,39 +32,36 @@
                     <!--Title-->
                     <h4 class="card-title">Hi, I'm <strong style="text-transform: capitalize;">{{$user->name}}</strong></h4>
                     <hr class="my-3">
-                    <div class="row">
-                        <div class="col-8">
-                            <h6><i class="fas fa-envelope mr-2"></i>Email</h6>
-                        </div>
-                        <div class="col-4">
-                            <h6>
-                                asd@asd.com
-                            </h6>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <h6><i class="fas fa-user mr-2"></i>Member Since</h6>
-                        </div>
-                        <div class="col-4">
-                            <h6>
-                                Jan 2019
-                            </h6>
-                        </div>
-                    </div>
+                    <!-- Email -->
+                    <h6><i class="fas fa-envelope mr-2"></i>Email</h6>
+                    <p class="text-muted">{{$user->email}}</p>
+                    <!-- Member Since -->
+                    <h6><i class="fas fa-user mr-2"></i>Member Since</h6>
+                    <p class="text-muted">@php $date= explode(" ",$user->created_at); echo $date[0]; 
+@endphp
+                    </p>
                     <hr class="my-3">
-
                     <!-- description -->
                     <h6><i class="fas fa-address-card mr-2"></i>Description</h6>
-                    <p class="text-muted">
-                        desc
-                    </p>
-                    <a class="btn btn-info btn-md" href="/user/settings" role="button" data-toggle="">Edit profile<i class="fas fa-pencil-alt ml-2"></i></a>
+                    <p class="text-muted">{{$user->description}}</p>
+                    {{--URL --}}
+                    <label for="basic-url">Your profile URL</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">https://ocr.com/</span>
+                        </div>
+                        <input type="text" readonly value='{{$user->url}}' class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                    </div>
+                    <!-- edit btn -->
+                    @if (Auth::check() && Auth::user()->id == $user->id)
+                    <a class="btn btn-info btn-md" href="{{route('dashboard.edit',[$user->id])}}" role="button" data-toggle="">Edit profile<i class="fas fa-pencil-alt ml-2"></i></a>                    @endif
+
                 </div>
 
             </section>
             <!--Section: Basic Info ENDS-->
             <!-- Section: user info -->
+            {{--
             <section class="card mb-4">
                 <div class="card-body text-center">
                     <h5>
@@ -103,7 +100,7 @@
                     <a class="btn btn-info btn-md" href="/user/settings" role="button" data-toggle="">Edit profile<i class="fas fa-pencil-alt ml-2"></i></a>
 
                 </div>
-            </section>
+            </section> --}}
             <!-- Section: user info -->
         </div>
         <div class="col-lg-7 col-md-12 mt-3">

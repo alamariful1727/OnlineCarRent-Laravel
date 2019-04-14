@@ -72,7 +72,7 @@
                         <span class="sr-only">Toggle Dropdown</span>
                     </a>
               <div class="dropdown-menu  custom-dropdown" aria-labelledby="usermenu">
-                <a class="dropdown-item" href="/user/settings">Setting</a>
+                <a class="dropdown-item" href="{{route('dashboard.edit',[Auth::user()->id])}}">Setting</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{route('home.about')}}">About Us</a>
                 <a class="dropdown-item" href="">Contact US</a>
