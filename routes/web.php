@@ -21,7 +21,9 @@ Route::get('/about', 'HomeController@about')->name('home.about');
 
 // admin dashboard
 Route::group(['middleware' => ['auth', 'admin']], function () {
-  Route::get('/admin-dashboard', 'AdminController@index')->name('admin.index');
+  Route::get('/admin', 'AdminController@index')->name('admin.index');
+  Route::get('/admin/user-details', 'AdminController@userDetails')->name('admin.userDetails');
+  Route::get('/admin/get-user-details', 'AdminController@getUsersInfo')->name('admin.getUsersInfo');
 });
 
 // blogs

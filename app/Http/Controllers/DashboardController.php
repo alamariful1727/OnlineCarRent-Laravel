@@ -29,7 +29,7 @@ class DashboardController extends Controller
         if ($user != null) {
             return view('dashboard.index')->with('user', $user);
         }
-        return redirect('/')->with('error', 'Sorry, no user found in /' . $url);
+        return redirect()->back()->with('error', 'Sorry, No user found in http://www.onlinecarrent.com/' . $url);
     }
     public function edit($id)
     {
@@ -56,7 +56,8 @@ class DashboardController extends Controller
             // Get just ext
             $extension = $request->file('cover_image')->getClientOriginalExtension();
             // Filename to store
-            $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            // $fileNameToStore = $filename . '_' . time() . '.' . $extension;
+            $fileNameToStore = auth()->user()->id . '__' . time() . '.' . $extension;
             // Upload Image
             $path = $request->file('cover_image')->storeAs('public/user_images', $fileNameToStore);
         }

@@ -9,6 +9,7 @@ use DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\BlogFormRequest;
+use SebastianBergmann\CodeCoverage\Report\Xml\File;
 
 class BlogsController extends Controller
 {
@@ -28,7 +29,15 @@ class BlogsController extends Controller
      */
     public function index()
     {
-        //
+        // $files = Storage::files('/public/blog_images');
+        // $name = '';
+        // foreach ($files as $file) {
+        //     $fname = substr($file, strlen('/public/blog_images/') - 1);
+        //     $name = $name . '<h1>' . $fname . '<h1><br>';
+        // }
+        // return $name;
+
+
         // $blogs = Blog::all();
         // $blogs = Blog::orderBy('id', 'desc')->get();
         $blogs = Blog::orderBy('updated_at', 'desc')->paginate(5);
@@ -91,7 +100,7 @@ class BlogsController extends Controller
         $blog->body = $request->input('body');
         $blog->save();
 
-        return redirect('/blog')->with('success', 'Blog created');
+        return redirect('/blog')->with('success', 'Blog created by ' . auth()->user()->name);
     }
 
     /**

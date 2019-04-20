@@ -13,7 +13,7 @@
         <ul class="navbar-nav mr-auto">
           @if (Auth::check() && Auth::user()->type == 'admin')
           <li class="nav-item">
-            <a class="nav-link" href="{{route('admin.index')}}">admin</a>
+            <a class="nav-link text-warning" href="{{route('admin.index')}}">Switch to ADMIN</a>
           </li>
           @endif
         </ul>

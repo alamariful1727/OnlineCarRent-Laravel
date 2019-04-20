@@ -1,17 +1,20 @@
-@extends('layouts.app') 
+@extends('layouts.admin') 
 @section('content')
-<div class="container">
-    <h1 class="text-center head-text">
-        Admin panel
-    </h1>
-    <hr class="head-hr">
-    <!-- row ends -->
-    <div class="row">
-        <div class="card-columns">
+<section class="forms">
+    <div class="container-fluid">
+        <!-- Page Header-->
+        <header>
+            <h1 class="h3 display text-center">Admin dashboard</h1>
+        </header>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
 
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- card deck ends -->
     </div>
-    <!-- row ends -->
-</div>
+</section>
 @endsection

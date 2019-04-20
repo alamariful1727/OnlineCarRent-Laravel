@@ -9,16 +9,16 @@
     <div class="card-columns">
       @foreach ($blogs as $blog)
       <div class="card">
-        @if (Auth::check()) @if (Auth::user()->id == $blog->user->id)
+        @if (Auth::check()) @if (Auth::user()->id == $blog->user->id || Auth::user()->type == 'admin')
         <div class="text-right abs-opt">
           <button type="button" data-bid="{{$blog->id}}" onclick="getBid(this);" id="btnEdit" class="btn btn-info" data-toggle="modal"
             data-target="#editModal">
-                <span><i class="fas fa-edit text-light"></i></span>
-              </button>
+            <span><i class="fas fa-edit text-light"></i></span>
+          </button>
           <button type="button" data-bid="{{$blog->id}}" onclick="getBid(this);" id="btnDelete" class="btn btn-danger ml-1" data-toggle="modal"
             data-target="#exampleModalCenter">
-                <span><i class="fas fa-trash-alt text-light"></i></span>
-              </button>
+            <span><i class="fas fa-trash-alt text-light"></i></span>
+          </button>
         </div>
         @endif @endif @if ($blog->cover_image != '')
         <img class="card-img-top" src="/storage/blog_images/{{$blog->cover_image}}" alt="Sorry: Admin will Add a image later..">        @endif
