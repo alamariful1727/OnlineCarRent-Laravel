@@ -37,8 +37,8 @@
 <body>
   @include('inc.sidenavbar')
   <div class="page">
-  @include('inc.header')
-  @include('inc.msg') {{--
+  @include('inc.header'){{--
+  @include('inc.msg')
   @include('inc.counts')
   @include('inc.headsections')
   @include('inc.statistics')

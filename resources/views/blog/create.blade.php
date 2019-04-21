@@ -1,5 +1,6 @@
 @extends('layouts.app') 
 @section('content')
+  @include('inc.msg')
 <style>
   body {
     background: #FC354C;

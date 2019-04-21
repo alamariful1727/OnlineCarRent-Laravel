@@ -33,13 +33,13 @@
           <a href="#usersDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-check"></i>Users</a>
           <ul id="usersDropdown" class="collapse list-unstyled ">
             <li><a href="{{route('admin.userDetails')}}">Users details</a></li>
-            <li><a href="#">Add user</a></li>
+            <li><a href="{{route('admin.addUser')}}">Add user</a></li>
           </ul>
         </li>
         <li>
           <a href="#blogsDropdown" aria-expanded="false" data-toggle="collapse"><i class="icon-check"></i>Blogs</a>
           <ul id="blogsDropdown" class="collapse list-unstyled ">
-            <li><a href="#">Blog list</a></li>
+            <li><a href="{{route('admin.blogDetails')}}">Blog list</a></li>
           </ul>
         </li>
       </ul>

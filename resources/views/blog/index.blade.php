@@ -1,5 +1,6 @@
 @extends('layouts.app') 
 @section('content')
+  @include('inc.msg')
 <div class="container">
   <h1 class="text-center head-text">Users experience with us!!</h1>
   <hr class="head-hr">
@@ -11,11 +12,11 @@
       <div class="card">
         @if (Auth::check()) @if (Auth::user()->id == $blog->user->id || Auth::user()->type == 'admin')
         <div class="text-right abs-opt">
-          <button type="button" data-bid="{{$blog->id}}" onclick="getBid(this);" id="btnEdit" class="btn btn-info" data-toggle="modal"
+          <button type="button" data-bid="{{$blog->bid}}" onclick="getBid(this);" id="btnEdit" class="btn btn-info" data-toggle="modal"
             data-target="#editModal">
             <span><i class="fas fa-edit text-light"></i></span>
           </button>
-          <button type="button" data-bid="{{$blog->id}}" onclick="getBid(this);" id="btnDelete" class="btn btn-danger ml-1" data-toggle="modal"
+          <button type="button" data-bid="{{$blog->bid}}" onclick="getBid(this);" id="btnDelete" class="btn btn-danger ml-1" data-toggle="modal"
             data-target="#exampleModalCenter">
             <span><i class="fas fa-trash-alt text-light"></i></span>
           </button>
@@ -28,7 +29,7 @@
           <footer class="blockquote-footer">
             <small class="text-muted"><cite title="{{$blog->user->type}}">{{$blog->user->email}}</cite>
               </small>
-            <p class="card-text"><small class="text-muted">Written on {{$blog->created_at}}</small></p>
+            <p class="card-text"><small class="text-muted">Updated on {{$blog->blog_updated_at}}</small></p>
           </footer>
         </blockquote>
       </div>
@@ -135,6 +136,7 @@
     document.getElementById('deleteBlog').addEventListener("click", function () {
         axios.delete('http://onlinecarrent.com/blog/' + blogID, { data: null })
         .then(response => {
+          console.log(response);
           window.location.href = "http://onlinecarrent.com/blog";
         })
         .catch(error => {

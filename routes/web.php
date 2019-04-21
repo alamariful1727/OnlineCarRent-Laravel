@@ -22,8 +22,17 @@ Route::get('/about', 'HomeController@about')->name('home.about');
 // admin dashboard
 Route::group(['middleware' => ['auth', 'admin']], function () {
   Route::get('/admin', 'AdminController@index')->name('admin.index');
+  // users
   Route::get('/admin/user-details', 'AdminController@userDetails')->name('admin.userDetails');
   Route::get('/admin/get-user-details', 'AdminController@getUsersInfo')->name('admin.getUsersInfo');
+  Route::get('/admin/user-details/{id}/editUser', 'AdminController@editUser')->name('admin.editUser');
+  Route::post('/admin/user-details/{id}', 'AdminController@updateUser')->name('admin.updateUser');
+  Route::get('/admin/user-details/{id}/deleteUser', 'AdminController@deleteUser')->name('admin.deleteUser');
+  Route::get('/admin/addUser', 'AdminController@addUser')->name('admin.addUser');
+  Route::post('/admin/storeUser', 'AdminController@storeUser')->name('admin.storeUser');
+  // blogs
+  Route::get('/admin/blog-details', 'AdminController@blogDetails')->name('admin.blogDetails');
+  Route::get('/admin/get-blog-details', 'AdminController@getBlogsInfo')->name('admin.getBlogsInfo');
 });
 
 // blogs

@@ -40,7 +40,7 @@ class BlogsController extends Controller
 
         // $blogs = Blog::all();
         // $blogs = Blog::orderBy('id', 'desc')->get();
-        $blogs = Blog::orderBy('updated_at', 'desc')->paginate(5);
+        $blogs = Blog::orderBy('blog_updated_at', 'desc')->paginate(5);
         // $blogs = Blog::orderBy('id', 'desc')->take(2)->get();
         // $blogs = Blog::find(1);
         // $blogs = Blog::find([]);

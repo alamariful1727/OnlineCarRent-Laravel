@@ -1,5 +1,6 @@
 @extends('layouts.app') 
 @section('content')
+    @include('inc.msg')
 <div class="container">
     <h1 class="text-center head-text">
         {{$title}}

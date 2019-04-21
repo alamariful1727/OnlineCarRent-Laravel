@@ -1,5 +1,6 @@
 @extends('layouts.app') 
 @section('content')
+  @include('inc.msg')
 <style>
   body {
     background: #FC354C;
@@ -19,7 +20,7 @@
     <div class="offset-lg-3 col-lg-6 col-md-12">
       <div class="card p-3">
         <form method="POST" action="{{route('dashboard.update',[Auth::user()->id])}}" enctype="multipart/form-data">
-          {{-- name --}}
+          <!-- name -->
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="name">@</span>
@@ -27,13 +28,25 @@
             <input type="text" required name="name" class="form-control" placeholder="name" aria-label="name" aria-describedby="name"
               value="@if (old('name')!='') {{old('name')}} @else {{$user->name}} @endif">
           </div>
-          {{-- description --}}
+          <!-- name error -->
+          @if ($errors->has('name'))
+          <span class="invalid-feedback d-block" role="alert">
+                  <strong>{{ $errors->first('name') }}</strong>
+              </span> @endif
+          <!-- name error ends -->
+          <!-- description -->
           <div class="form-group">
             <label for="description">Description</label> @if (old('description')!='')
             <textarea name="description" required class="form-control" placeholder="who you are!!" id="description" rows="3">{{old('description')}}</textarea>            @else
             <textarea name="description" class="form-control" placeholder="who you are!!" id="description" rows="3">{{$user->description}}</textarea>            @endif
           </div>
-          {{-- URL --}}
+          <!-- description error -->
+          @if ($errors->has('description'))
+          <span class="invalid-feedback d-block" role="alert">
+                  <strong>{{ $errors->first('description') }}</strong>
+              </span> @endif
+          <!-- description error ends -->
+          <!-- URL -->
           <label for="basic-url">URL</label>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -41,11 +54,17 @@
             </div>
             <input type="text" required name="url" class="form-control" id="basic-url" aria-describedby="url" value="@if (old('url')!='') {{old('url')}} @else {{$user->url}} @endif">
           </div>
-          {{-- image --}}
+          <!-- url error -->
+          @if ($errors->has('url'))
+          <span class="invalid-feedback d-block" role="alert">
+                  <strong>{{ $errors->first('url') }}</strong>
+              </span> @endif
+          <!-- url error ends -->
+          <!-- image -->
           <div class="imgwrapper mb-2 text-center">
             <img style="width:50%;" class="d-inline-block" src="/storage/user_images/{{$user->image}}">
           </div>
-          {{-- file --}}
+          <!-- file -->
           <div class="input-group">
             <div class="custom-file">
               <input name="cover_image" type="file" onchange="readURL(this);" class="custom-file-input" id="cover_image" aria-describedby="inputGroupFileAddon04"

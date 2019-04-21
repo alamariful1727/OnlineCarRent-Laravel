@@ -9,9 +9,11 @@ class Blog extends Model
     // Table Name
     protected $table = 'blogs';
     // Primary Key
-    public $primaryKey = 'id';
+    public $primaryKey = 'bid';
     // Timestamps
     public $timestamps = true;
+    const CREATED_AT = 'blog_created_at';
+    const UPDATED_AT = 'blog_updated_at';
 
     public function user()
     {

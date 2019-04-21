@@ -1,5 +1,6 @@
 @extends('layouts.app') 
 @section('content')
+    @include('inc.msg')
 <style>
     body {
         background: linear-gradient(to right, #30CFD0 0%, #330867 100%);

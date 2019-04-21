@@ -1,5 +1,6 @@
 @extends('layouts.admin') 
 @section('content')
+    @include('inc.msg')
 <section class="forms">
     <div class="container-fluid">
         <!-- Page Header-->

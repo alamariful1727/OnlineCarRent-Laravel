@@ -118,8 +118,7 @@
   <button id="scrollTop" class="btn btn-outline-dark"><i class="fas fa-angle-up"></i></button>
   <div id="app">
     <main class="py-4 mt-5">
-  @include('inc.navbar')
-  @include('inc.msg') @yield('content')
+  @include('inc.navbar') @yield('content')
     </main>
   </div>
 </body>
